@@ -11,8 +11,8 @@
     <div class="container py-5">
         <h2 class="mb-4 text-center">💃 Znajdź Partnera do Tańca 🕺</h2>
 
-        <!-- Formularz filtrowania -->
-        <form method="GET" action="/" class="row g-3 mb-5 bg-white p-4 rounded shadow-sm">
+        <!-- Formularz filtrowania (odpytujący bezpośrednio serwer na Renderze) -->
+        <form method="GET" action="https://desire-dance.onrender.com/" class="row g-3 mb-5 bg-white p-4 rounded shadow-sm">
             <div class="col-md-5">
                 <label class="form-label">Styl tańca</label>
                 <select name="style" class="form-select">
@@ -42,13 +42,14 @@
                                 <strong>Styl:</strong> {{ p.style }}<br>
                                 <strong>Dzień:</strong> {{ p.day }}<br>
                                 <strong>Poziom:</strong> {{ p.level }}<br>
-                                <strong>Rola:</strong> {{ p.role }}
+                                <strong>Rola:</strong> {{ p.role }}<br>
+                                <strong>Tel:</strong> <a href="tel:{{ p.phone }}" target="_top">{{ p.phone }}</a>
                             </p>
                         </div>
                         <div>
-                            <a href="tel:{{ p.phone }}" class="btn btn-outline-danger btn-sm w-100 mb-2">Zadzwoń / Kontakt</a>
-                            <!-- Przycisk usuwania ogłoszenia -->
-                            <form action="/delete/{{ p.id }}" method="POST">
+                            <a href="tel:{{ p.phone }}" target="_top" class="btn btn-outline-danger btn-sm w-100 mb-2">Zadzwoń / Kontakt</a>
+                            <!-- Przycisk usuwania ogłoszenia z pełnym adresem URL do Renderu -->
+                            <form action="https://desire-dance.onrender.com/delete/{{ p.id }}" method="POST">
                                 <button type="submit" class="btn btn-danger btn-sm w-100" style="background-color: #ff4d4d; border: none;">Usuń ogłoszenie</button>
                             </form>
                         </div>
@@ -58,11 +59,11 @@
             {% endfor %}
         </div>
 
-        <!-- Formularz dodawania profilu -->
+        <!-- Formularz dodawania profilu (wysyłający dane bezpośrednio na Render) -->
         <hr class="my-5">
         <div class="bg-white p-4 rounded shadow-sm">
             <h4>Dodaj swój profil</h4>
-            <form action="/add" method="POST" class="row g-3 mt-2">
+            <form action="https://desire-dance.onrender.com/add" method="POST" class="row g-3 mt-2">
                 <div class="col-md-6">
                     <input type="text" name="name" class="form-control" placeholder="Imię" required>
                 </div>
