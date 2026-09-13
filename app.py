@@ -4,10 +4,7 @@ from flask import Flask, redirect, render_template, request, url_for
 app = Flask(__name__)
 
 # Prowizoryczna baza danych w pamięci (na start; docelowo można podpiąć SQLite/PostgreSQL)
-profiles = [
-    {"id": 1, "name": "Kasia", "age": 32, "style": "Bachata", "day": "Czwartek", "level": "Początkujący", "role": "Follower", "phone": "+48 123 456 789"},
-    {"id": 2, "name": "Michał", "age": 35, "style": "Bachata", "day": "Czwartek", "level": "Początkujący", "role": "Leader", "phone": "+48 987 654 321"}
-]
+profiles = []
 
 @app.route('/')
 def index():
