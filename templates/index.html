@@ -12,7 +12,7 @@
         <h2 class="mb-4 text-center">💃 Znajdź Partnera do Tańca 🕺</h2>
 
         <!-- Formularz filtrowania -->
-        <form method="GET" action="{{ url_for('index', _external=True) }}" class="row g-3 mb-5 bg-white p-4 rounded shadow-sm">
+        <form method="GET" action="/" class="row g-3 mb-5 bg-white p-4 rounded shadow-sm">
             <div class="col-md-5">
                 <label class="form-label">Styl tańca</label>
                 <select name="style" class="form-select">
@@ -47,9 +47,10 @@
                             </p>
                         </div>
                         <div>
+                            <!-- Działający przycisk dzwonienia -->
                             <a href="tel:{{ p.phone }}" target="_top" class="btn btn-outline-danger btn-sm w-100 mb-2">Zadzwoń / Kontakt</a>
-                            <!-- Przycisk usuwania ogłoszenia z pełnym adresem zewnętrznym -->
-                            <form action="{{ url_for('delete_profile', profile_id=p.id, _external=True) }}" method="POST">
+                            <!-- NAPRAWIONY przycisk usuwania ogłoszenia (właściwa zmienna p.id i bezpieczny adres) -->
+                            <form action="/delete/{{ p.id }}" method="POST">
                                 <button type="submit" class="btn btn-danger btn-sm w-100" style="background-color: #ff4d4d; border: none;">Usuń ogłoszenie</button>
                             </form>
                         </div>
@@ -63,7 +64,7 @@
         <hr class="my-5">
         <div class="bg-white p-4 rounded shadow-sm">
             <h4>Dodaj swój profil</h4>
-            <form action="{{ url_for('add_profile', _external=True) }}" method="POST" class="row g-3 mt-2">
+            <form action="/add" method="POST" class="row g-3 mt-2">
                 <div class="col-md-6">
                     <input type="text" name="name" class="form-control" placeholder="Imię" required>
                 </div>
